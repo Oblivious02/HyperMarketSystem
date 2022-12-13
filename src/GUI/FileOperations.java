@@ -2,6 +2,7 @@ package GUI;
 
 import Users.Admin;
 import Users.Employee;
+import Users.User;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -56,6 +57,35 @@ public class FileOperations {
             }
 
             return (ArrayList<Object>) (Object) employees;
+
+
+        }
+
+        else if (FilePath.equals("User.txt"))
+        {
+
+            ArrayList<User> Users = new ArrayList<User>();
+            User x;
+
+            while (Reader.hasNext()) {
+
+                x = new User();
+                String Line = Reader.nextLine();
+                String[] seprated = Line.split(",");
+
+
+                x.setUsername(seprated[0]);
+                x.setPassword(seprated[1]);
+                x.setPhoneNumber(Integer.parseInt(seprated[2]));
+                x.setEmail(seprated[3]);
+                x.setID(Integer.parseInt(seprated[4]));
+
+
+                Users.add(x);
+            }
+
+            return (ArrayList<Object>) (Object) Users;
+
 
 
         }

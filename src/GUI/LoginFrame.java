@@ -6,7 +6,10 @@
 package GUI;
 
 import Users.Admin;
+import Users.User;
 
+import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 import java.util.ArrayList;
 import java.util.Objects;
 
@@ -112,6 +115,26 @@ public class LoginFrame extends javax.swing.JFrame {
                 new AdminConsole().setVisible(true);
 //                String[] s = new String[1];
 //                AdminConsole.main(s);
+                break;
+            }
+
+        }
+
+        ArrayList<User> Users = new ArrayList<User>();
+        Users = (ArrayList<User>) (Object) FileOperations.read("User.txt");
+        EnteredUsername = UsernameTextField.getText();
+         EnteredPassword = PasswordField.getText();
+
+        for (User user: Users) {
+            if (Objects.equals(EnteredUsername, user.getUsername()) && Objects.equals(EnteredPassword, user.getPassword())) {
+                this.setVisible(false);
+                new UserFrame().setVisible(true);
+                DefaultTableModel tableModel = (DefaultTableModel) UserFrame. UserTable.getModel();
+                JTable table = new JTable(tableModel);
+                Object rowData[] = { user.getUsername(), user.getPassword() , user.getPhoneNumber()
+                        , user.getEmail() ,user.getID(),};
+                tableModel.addRow(rowData);
+
                 break;
             }
 
