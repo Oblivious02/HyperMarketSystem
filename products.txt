@@ -1,2 +1,2 @@
-2020,pepsi,5le,20-10,10,50,drinks,good
-2022,coca,10le,12-8,50,12,soda,bad
+2020,pepsi,5le,20-10,10,50,drinks,hhh
+2022,coca,10le,12-8,50,12,soda,badd
