@@ -74,11 +74,11 @@ public class FileOperations {
                 String[] seprated = Line.split(",");
 
 
-                x.setUsername(seprated[0]);
-                x.setPassword(seprated[1]);
-                x.setPhoneNumber(Integer.parseInt(seprated[2]));
-                x.setEmail(seprated[3]);
-                x.setID(Integer.parseInt(seprated[4]));
+                x.setID(Integer.parseInt(seprated[0]));
+                x.setUsername(seprated[1]);
+                x.setPassword(seprated[2]);
+                x.setPhoneNumber(Integer.parseInt(seprated[3]));
+                x.setEmail(seprated[4]);
 
 
                 Users.add(x);

@@ -104,6 +104,7 @@ public class LoginFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
     }
 
+    public static ArrayList<User> Users;
     private void LoginButtonActionPerformed(java.awt.event.ActionEvent evt) {
         ArrayList<Admin> admins;
         admins = (ArrayList<Admin>) (Object) FileOperations.read("admin.txt");
@@ -120,7 +121,6 @@ public class LoginFrame extends javax.swing.JFrame {
 
         }
 
-        ArrayList<User> Users = new ArrayList<User>();
         Users = (ArrayList<User>) (Object) FileOperations.read("User.txt");
         EnteredUsername = UsernameTextField.getText();
          EnteredPassword = PasswordField.getText();
@@ -129,11 +129,11 @@ public class LoginFrame extends javax.swing.JFrame {
             if (Objects.equals(EnteredUsername, user.getUsername()) && Objects.equals(EnteredPassword, user.getPassword())) {
                 this.setVisible(false);
                 new UserFrame().setVisible(true);
-                DefaultTableModel tableModel = (DefaultTableModel) UserFrame. UserTable.getModel();
-                JTable table = new JTable(tableModel);
-                Object rowData[] = { user.getUsername(), user.getPassword() , user.getPhoneNumber()
-                        , user.getEmail() ,user.getID(),};
+                DefaultTableModel tableModel = (DefaultTableModel) UserFrame.UserTable.getModel();
+                Object rowData[] = { user.getID(), user.getUsername() , user.getPassword()
+                        , user.getPhoneNumber() ,user.getEmail()};
                 tableModel.addRow(rowData);
+                Users.remove(user);
 
                 break;
             }
