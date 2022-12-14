@@ -6,6 +6,8 @@
 package GUI;
 
 import Users.Admin;
+import Users.MarketUser;
+import Users.Product;
 import Users.User;
 
 import javax.swing.*;
@@ -140,6 +142,31 @@ public class LoginFrame extends javax.swing.JFrame {
 
         }
 
+        ArrayList<MarketUser> marketUsers = (ArrayList<MarketUser>) (Object) FileOperations.read("marketUsers.txt");
+        EnteredUsername = UsernameTextField.getText();
+        EnteredPassword = PasswordField.getText();
+
+        Boolean marketUserFound = false;
+        for (MarketUser user: marketUsers) {
+            if (Objects.equals(EnteredUsername, user.getUsername()) && Objects.equals(EnteredPassword, user.getPassword())) {
+                this.setVisible(false);
+                new MarketingFrame().setVisible(true);
+                marketUserFound = true;
+                break;
+            }
+
+        }
+        if (marketUserFound){
+            Products = (ArrayList<Product>) (Object) FileOperations.read("products.txt");
+            DefaultTableModel tableModel = (DefaultTableModel) MarketingFrame.ProductTable.getModel();
+            for (Product product: Products) {
+                Object rowData[] = {String.valueOf(product.getID()), product.getName()};
+                tableModel.addRow(rowData);
+            }
+        }
+
+
+
     }
 
     /**
@@ -190,6 +217,6 @@ public class LoginFrame extends javax.swing.JFrame {
     // End of variables declaration
 
 
-
+    public static ArrayList<Product> Products;
 
 }

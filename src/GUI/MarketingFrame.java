@@ -4,6 +4,13 @@
  */
 package GUI;
 
+import Users.Product;
+
+import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+
+import static GUI.LoginFrame.Products;
+
 /**
  *
  * @author kenzy
@@ -67,11 +74,16 @@ public class MarketingFrame extends javax.swing.JFrame {
             boolean[] canEdit = new boolean [] {
                     false, false
             };
-
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
+        ProductTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ProductTableMouseClicked(evt);
+            }
+        }
+    );
         jScrollPane2.setViewportView(ProductTable);
         if (ProductTable.getColumnModel().getColumnCount() > 0) {
             ProductTable.getColumnModel().getColumn(0).setPreferredWidth(2);
@@ -140,12 +152,25 @@ public class MarketingFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>
 
+
+
     private void SendButtonActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
     }
 
     private void DiscountFieldActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
+    }
+
+    private void ProductTableMouseClicked(java.awt.event.MouseEvent evt) {
+        // TODO add your handling code here:
+        DefaultTableModel productTableModel = (DefaultTableModel) ProductTable.getModel();
+        int selectedRow = ProductTable.getSelectedRow();
+        int ID = Integer.parseInt(String.valueOf(productTableModel.getValueAt(selectedRow, 0)));
+        System.out.println(ID);
+//        for (Product product: Products) {
+//
+//        }
     }
 
     /**
@@ -186,7 +211,7 @@ public class MarketingFrame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify
     private javax.swing.JTextField DiscountField;
-    private javax.swing.JTable ProductTable;
+    public static javax.swing.JTable ProductTable;
     private javax.swing.JTextArea ReportField;
     private javax.swing.JLabel ReportLabel;
     private javax.swing.JLabel SaleLabel;
