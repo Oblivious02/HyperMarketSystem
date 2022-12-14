@@ -80,6 +80,7 @@ public class MarketingFrame extends javax.swing.JFrame {
                     false, false
             };
             public boolean isCellEditable(int rowIndex, int columnIndex) {
+
                 return canEdit [columnIndex];
             }
         });
