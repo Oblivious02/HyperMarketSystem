@@ -5,9 +5,12 @@
 package GUI;
 
 import Users.Product;
+import com.sun.org.apache.xpath.internal.operations.Bool;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+
+import java.io.File;
 
 import static GUI.LoginFrame.Products;
 
@@ -155,7 +158,24 @@ public class MarketingFrame extends javax.swing.JFrame {
 
 
     private void SendButtonActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
+        for (Product product: Products) {
+            if (ID == product.getID()){
+                product.setDiscount(DiscountField.getText());
+                product.setReport(ReportField.getText());
+            }
+        }
+        Boolean firstTime = true;
+        for (Product product: Products) {
+            String s = String.valueOf(product.getID()) + ',' + product.getName() + ',' + product.getPrice()
+                    + ',' + product.getExpireDate()  + ',' + product.getQuantity()  + ',' + product.getDiscount() + ',' +
+                    product.getCategory() + ',' + product.getReport();
+            if (firstTime) {
+                FileOperations.write(s, "products.txt", false);
+                firstTime = false;
+                continue;
+            }
+            FileOperations.write(s, "products.txt", true);
+        }
     }
 
     private void DiscountFieldActionPerformed(java.awt.event.ActionEvent evt) {
@@ -166,11 +186,13 @@ public class MarketingFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         DefaultTableModel productTableModel = (DefaultTableModel) ProductTable.getModel();
         int selectedRow = ProductTable.getSelectedRow();
-        int ID = Integer.parseInt(String.valueOf(productTableModel.getValueAt(selectedRow, 0)));
-        System.out.println(ID);
-//        for (Product product: Products) {
-//
-//        }
+        ID = Integer.parseInt(String.valueOf(productTableModel.getValueAt(selectedRow, 0)));
+        for (Product product: Products) {
+            if (ID == product.getID()){
+                DiscountField.setText(product.getDiscount());
+                ReportField.setText(product.getReport());
+            }
+        }
     }
 
     /**
@@ -218,6 +240,7 @@ public class MarketingFrame extends javax.swing.JFrame {
     private javax.swing.JButton SendButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private int ID;
     private javax.swing.JScrollPane jScrollPane2;
     // End of variables declaration
 }
