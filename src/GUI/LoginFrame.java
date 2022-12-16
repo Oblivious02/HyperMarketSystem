@@ -5,10 +5,7 @@
  */
 package GUI;
 
-import Users.Admin;
-import Users.MarketUser;
-import Users.Product;
-import Users.User;
+import Users.*;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -123,6 +120,8 @@ public class LoginFrame extends javax.swing.JFrame {
 
         }
 
+        
+
         Users = (ArrayList<User>) (Object) FileOperations.read("User.txt");
         EnteredUsername = UsernameTextField.getText();
          EnteredPassword = PasswordField.getText();
@@ -166,6 +165,19 @@ public class LoginFrame extends javax.swing.JFrame {
         }
 
 
+
+        ArrayList<Seller> sellers = (ArrayList<Seller>) (Object) FileOperations.read("seller.txt");
+
+        EnteredUsername = UsernameTextField.getText();
+        EnteredPassword = PasswordField.getText();
+        for (Seller seller: sellers) {
+            if (Objects.equals(EnteredUsername, seller.getUsername()) && Objects.equals(EnteredPassword, seller.getPassword())) {
+                this.setVisible(false);
+                new SalesConsole().setVisible(true);
+                break;
+            }
+
+        }
 
     }
 
