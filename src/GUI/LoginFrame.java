@@ -120,7 +120,7 @@ public class LoginFrame extends javax.swing.JFrame {
 
         }
 
-        
+
 
         Users = (ArrayList<User>) (Object) FileOperations.read("User.txt");
         EnteredUsername = UsernameTextField.getText();
