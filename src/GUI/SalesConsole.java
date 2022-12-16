@@ -7,8 +7,10 @@ package GUI;
 import Users.Employee;
 import Users.Product;
 
+import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Objects;
 
 import static GUI.LoginFrame.Products;
@@ -37,7 +39,66 @@ public class SalesConsole extends javax.swing.JFrame {
         }
     }
 
-    private void SearchEmployeeActionPerformed(java.awt.event.ActionEvent evt) {
+
+        private void AddButtonActionPerformed(java.awt.event.ActionEvent evt) {
+        if(NameLabel.getText().equals("") || PriceLabel.getText().equals("")||QuantityText.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Please ENTER ALL DATA!");
+        }
+        else{
+            DefaultTableModel model = (DefaultTableModel) ProductTable.getModel();
+            Product p = new Product();
+            Integer UpdateQty;
+            UpdateQty = 0;
+            for (int i = 0; i < ProductTable.getRowCount(); i++) {
+                if (model.getValueAt(i, 1).equals(ID)) {
+                    UpdateQty = Integer.parseInt(model.getValueAt(i, 3).toString()) - Integer.parseInt(QuantityText.getText());
+
+                    p.setID(Integer.parseInt(model.getValueAt(i, 1).toString().trim()));
+                    p.setName(model.getValueAt(i, 0).toString().trim());
+                    p.setPrice(model.getValueAt(i, 2).toString().trim());
+                    p.setQuantity(Integer.parseInt(model.getValueAt(i, 3).toString().trim()));
+                    p.setCategory(model.getValueAt(i, 4).toString().trim());
+
+                    if (UpdateQty >= 0) {
+                        model.setValueAt(UpdateQty, i, 3);
+                        int tableIndex = ProductTable.getSelectedRow();
+                        double total = Double.parseDouble(PriceLabel.getText()) * (Double.valueOf(QuantityText.getText()));
+
+                        String data[] ={ NameLabel.getText(), String.valueOf(Integer.parseInt(String.valueOf(ProductsTableModel.getValueAt(tableIndex,1)))), String.valueOf(total),QuantityText.getText()};
+                        DefaultTableModel tb1Model= (DefaultTableModel)ItemTable.getModel();
+                        tb1Model.addRow(data);
+
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Order can't be placed\nNot enough Quantity!");
+
+                    }
+                    break;
+
+                }
+
+
+            }
+
+        }
+        QuantityText.setText("");
+        NameLabel.setText("");
+        PriceLabel.setText("");
+
+    }
+
+    private void CancelButtonActionPerformed(java.awt.event.ActionEvent evt) {
+        QuantityText.setText("");
+        NameLabel.setText("");
+        PriceLabel.setText("");
+        DefaultTableModel ItemTableModel = (DefaultTableModel) ItemTable.getModel();
+        int rowCount = ItemTableModel.getRowCount();
+        for (int i = rowCount - 1; i >= 0; i--) {
+            ItemTableModel.removeRow(i);
+        }
+
+    }
+
+        private void SearchEmployeeActionPerformed(java.awt.event.ActionEvent evt) {
         ArrayList<Product> products = new ArrayList<>();
         products = (ArrayList<Product>) (Object) FileOperations.read("products.txt");
         ProductsTableModel = (DefaultTableModel) ProductTable.getModel();
@@ -63,6 +124,7 @@ public class SalesConsole extends javax.swing.JFrame {
         ID = Integer.parseInt(model.getValueAt(tableIndex, 1).toString());
 
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -122,8 +184,18 @@ public class SalesConsole extends javax.swing.JFrame {
         jLabel5.setText("Product List ");
 
         CancelButton.setText("Cancel");
+        CancelButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CancelButtonActionPerformed(evt);
+            }
+        });
 
         AddButton.setText("Add");
+        AddButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AddButtonActionPerformed(evt);
+            }
+        });
 
         SearchButton.setText("search");
         SearchButton.addActionListener(new java.awt.event.ActionListener() {
@@ -302,13 +374,13 @@ public class SalesConsole extends javax.swing.JFrame {
     // Variables declaration - do not modify
     private javax.swing.JButton AddButton;
     private javax.swing.JButton CancelButton;
-    private javax.swing.JTable ItemTable;
+    private static javax.swing.JTable ItemTable;
     private javax.swing.JButton ListButton;
     private javax.swing.JLabel Name;
     private javax.swing.JLabel NameLabel;
     private javax.swing.JLabel Price;
     private javax.swing.JLabel PriceLabel;
-    private javax.swing.JTable ProductTable;
+    private static javax.swing.JTable ProductTable;
     private javax.swing.JLabel Quantity;
     private javax.swing.JTextField QuantityText;
     private javax.swing.JButton SearchButton;

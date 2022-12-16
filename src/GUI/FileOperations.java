@@ -59,6 +59,27 @@ public class FileOperations {
 
         }
 
+        else if (FilePath.equals("seller.txt")) {
+
+            ArrayList<Seller> sellers = new ArrayList<Seller>();
+            Seller x;
+
+            while (Reader.hasNext()) {
+
+                x = new Seller();
+                String Line = Reader.nextLine();
+                String[] seprated = Line.split(",");
+
+                x.setUsername(seprated[0]);
+                x.setPassword(seprated[1]);
+                sellers.add(x);
+            }
+
+            return (ArrayList<Object>) (Object) sellers;
+
+
+        }
+
         else if (FilePath.equals("User.txt"))
         {
 
