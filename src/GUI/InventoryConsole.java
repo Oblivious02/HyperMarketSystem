@@ -5,12 +5,11 @@
  */
 package GUI;
 
-import Users.Product;
+import System.Product;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
-import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.Objects;
 

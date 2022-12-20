@@ -1,3 +1,3 @@
 2020,pepsi,5,20-10,12,50,drinks,good
 2022,coca,10,12-8,58,12,soda,bad
-2028,freska,10,12-8,14,12,cookie,crunchy
+2028,freska,10,12-8,14,12,cookie,extra crunchy

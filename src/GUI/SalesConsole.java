@@ -4,16 +4,12 @@
  */
 package GUI;
 
-import Users.Employee;
-import Users.Product;
+import System.Product;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Objects;
-
-import static GUI.LoginFrame.Products;
 
 /**
  *

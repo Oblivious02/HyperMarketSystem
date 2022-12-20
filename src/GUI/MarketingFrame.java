@@ -4,14 +4,9 @@
  */
 package GUI;
 
-import Users.Product;
-import com.sun.org.apache.xpath.internal.operations.Bool;
-import sun.rmi.runtime.Log;
+import System.Product;
 
-import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
-
-import java.io.File;
 
 import static GUI.LoginFrame.Products;
 

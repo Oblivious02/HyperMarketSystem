@@ -1,6 +1,6 @@
 package GUI;
 
-import Users.User;
+import System.User;
 
 import javax.swing.table.DefaultTableModel;
 
