@@ -7,6 +7,7 @@ package GUI;
 
 import Users.Product;
 
+import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
 import java.awt.event.MouseEvent;
@@ -223,6 +224,11 @@ public class InventoryConsole extends javax.swing.JFrame {
             Object rowData[] = {String.valueOf(product.getID()), product.getName(), product.getPrice(), product.getExpireDate(),
                     product.getQuantity(), product.getDiscount(), product.getCategory()};
             tableModel.addRow(rowData);
+            if( product.getQuantity()<15) {
+                String prompt_message = product.getName() + "'s quantity is " + product.getQuantity() + " (lower than 15)";
+
+                JOptionPane.showMessageDialog(null, prompt_message);
+            }
         }
     }
 
