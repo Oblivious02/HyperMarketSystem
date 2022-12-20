@@ -1,14 +1,14 @@
 package System;
 
 public class Product {
-    int ID ;
-    String Name ;
-    String Price ;
-    String ExpireDate ;
-    int Quantity ;
-    String Discount ;
-    String Category ;
-    String Report ;
+    private int ID ;
+    private String Name ;
+    private String Price ;
+    private String ExpireDate ;
+    private int Quantity ;
+    private String Discount ;
+    private String Category ;
+    private String Report ;
 
     public int getID() {
         return ID;

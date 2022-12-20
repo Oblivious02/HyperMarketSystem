@@ -242,11 +242,11 @@ public class InventoryConsole extends javax.swing.JFrame {
     private void addButtonMouseClicked(java.awt.event.MouseEvent evt) {
         DefaultTableModel tableModel = (DefaultTableModel) productsTableInventory.getModel();
         tableModel.addRow(new Object[]{});
+
     }
     private void LogOutButtonActionPerformed(java.awt.event.ActionEvent evt) {
         this.setVisible(false);
         new LoginFrame().setVisible(true);
-        // TODO add your handling code here:
     }
     private void updateButtonMouseClicked(java.awt.event.MouseEvent evt) {
         String[] rowData = new String[8];
@@ -319,6 +319,23 @@ public class InventoryConsole extends javax.swing.JFrame {
         }
     }
 
+    private float total(){
+        String[] rowData = new String[4];
+        DefaultTableModel productsTableInventoryModel = (DefaultTableModel) productsTableInventory.getModel();
+        total = 0;
+        float quantity, price;
+        for (int i = 0; i < productsTableInventoryModel.getRowCount(); i++) {
+            price = Float.parseFloat(String.valueOf(productsTableInventoryModel.getValueAt(i, 2)));
+            quantity = Float.parseFloat(String.valueOf(productsTableInventoryModel.getValueAt(i, 3)));
+            total += (price * quantity);
+//            for (int j = 0; j < 4; j++) {
+//
+//                rowData[j] = String.valueOf(productsTableInventoryModel.getValueAt(i, j));
+//            }
+            }
+        return total;
+    }
+
     /**
      * @param args the command line arguments
      */
@@ -355,6 +372,8 @@ public class InventoryConsole extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify
+
+    private float total;
     private javax.swing.JButton addButton;
     private javax.swing.JButton deleteButton;
     private javax.swing.JLabel jLabel1;

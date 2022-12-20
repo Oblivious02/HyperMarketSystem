@@ -168,6 +168,32 @@ public class FileOperations {
 
 
         }
+
+        else if (FilePath.equals("employee.txt"))
+        {
+
+            ArrayList<Employee> employees = new ArrayList<Employee>();
+            Employee x;
+
+            while (Reader.hasNext()) {
+
+                x = new Employee();
+                String Line = Reader.nextLine();
+                String[] seprated = Line.split(",");
+
+
+                x.setID(Integer.parseInt(seprated[0]));
+                x.setUsername(seprated[1]);
+                x.setPassword(seprated[2]);
+
+                employees.add(x);
+            }
+
+            return (ArrayList<Object>) (Object) employees;
+
+
+
+        }
         else
             return null;
     }
