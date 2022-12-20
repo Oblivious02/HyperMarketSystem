@@ -5,13 +5,9 @@
 package GUI;
 
 import Users.Product;
-import com.sun.org.apache.xpath.internal.operations.Bool;
-import sun.rmi.runtime.Log;
 
-import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
-
-import java.io.File;
+import java.util.ArrayList;
 
 import static GUI.LoginFrame.Products;
 
@@ -49,25 +45,32 @@ public class MarketingFrame extends javax.swing.JFrame {
         LogOutButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(0, 153, 153));
 
-        SendButton.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        SendButton.setBackground(new java.awt.Color(0, 153, 153));
+        SendButton.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        SendButton.setForeground(new java.awt.Color(255, 255, 255));
         SendButton.setText("Send");
+        SendButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         SendButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 SendButtonActionPerformed(evt);
             }
         });
 
-        ReportLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        ReportLabel.setText("Report:");
+        ReportLabel.setFont(new java.awt.Font("Segoe UI Variable", 1, 18)); // NOI18N
+        ReportLabel.setForeground(new java.awt.Color(0, 153, 153));
+        ReportLabel.setText("Report :");
 
-        SaleLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        SaleLabel.setText("Discount:");
+        SaleLabel.setFont(new java.awt.Font("Segoe UI Variable", 1, 18)); // NOI18N
+        SaleLabel.setForeground(new java.awt.Color(0, 153, 153));
+        SaleLabel.setText("Discount :");
 
         ReportField.setColumns(20);
         ReportField.setRows(5);
         jScrollPane1.setViewportView(ReportField);
 
+        ProductTable.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         ProductTable.setModel(new javax.swing.table.DefaultTableModel(
                 new Object [][] {
 
@@ -79,21 +82,18 @@ public class MarketingFrame extends javax.swing.JFrame {
             boolean[] canEdit = new boolean [] {
                     false, false
             };
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
 
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
         ProductTable.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                ProductTableMouseClicked(evt);
-            }
-        }
-    );
+                                          public void mouseClicked(java.awt.event.MouseEvent evt) {
+                                              ProductTableMouseClicked(evt);
+                                          }
+                                      }
+        );
         jScrollPane2.setViewportView(ProductTable);
-        if (ProductTable.getColumnModel().getColumnCount() > 0) {
-            ProductTable.getColumnModel().getColumn(0).setPreferredWidth(2);
-        }
 
         DiscountField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -101,12 +101,16 @@ public class MarketingFrame extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Serif", 3, 36)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 153, 153));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Marketing Module");
 
-        LogOutButton.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        LogOutButton.setBackground(new java.awt.Color(0, 153, 153));
+        LogOutButton.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        LogOutButton.setForeground(new java.awt.Color(255, 255, 255));
         LogOutButton.setText("Log Out");
+        LogOutButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         LogOutButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 LogOutButtonActionPerformed(evt);
@@ -116,84 +120,66 @@ public class MarketingFrame extends javax.swing.JFrame {
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(31, 31, 31)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(ReportLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(SaleLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 66, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(DiscountField, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(185, 185, 185)
-                        .addComponent(SendButton)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(47, 47, 47)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(12, 12, 12)
-                        .addComponent(LogOutButton)))
-                .addGap(22, 22, 22))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(185, 185, 185)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(layout.createSequentialGroup()
+                                                .addContainerGap()
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                        .addGroup(layout.createSequentialGroup()
+                                                                .addComponent(SaleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                                .addComponent(DiscountField, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                        .addGroup(layout.createSequentialGroup()
+                                                                .addComponent(ReportLabel)
+                                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE))
+                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addComponent(SendButton, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(119, 119, 119)))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(layout.createSequentialGroup()
+                                                .addGap(47, 47, 47)
+                                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(22, 22, 22))
+                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                                .addComponent(LogOutButton, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(71, 71, 71))))
+                        .addGroup(layout.createSequentialGroup()
+                                .addGap(160, 160, 160)
+                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 307, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(77, 77, 77)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(SaleLabel)
-                            .addComponent(DiscountField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(28, 28, 28)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(ReportLabel)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(15, 15, 15)
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(SendButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(LogOutButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(39, Short.MAX_VALUE))
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGap(19, 19, 19)
+                                .addComponent(jLabel1)
+                                .addGap(58, 58, 58)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addGroup(layout.createSequentialGroup()
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                                        .addComponent(SaleLabel)
+                                                        .addComponent(DiscountField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                .addGap(54, 54, 54)
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                        .addComponent(ReportLabel)
+                                                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(26, 26, 26)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(SendButton)
+                                        .addComponent(LogOutButton))
+                                .addContainerGap(105, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>
 
-
-
     private void SendButtonActionPerformed(java.awt.event.ActionEvent evt) {
-        for (Product product: Products) {
-            if (ID == product.getID()){
-                product.setDiscount(DiscountField.getText());
-                product.setReport(ReportField.getText());
-            }
-        }
-        Boolean firstTime = true;
-        for (Product product: Products) {
-            String s = String.valueOf(product.getID()) + ',' + product.getName() + ',' + product.getPrice()
-                    + ',' + product.getExpireDate()  + ',' + product.getQuantity()  + ',' + product.getDiscount() + ',' +
-                    product.getCategory() + ',' + product.getReport();
-            if (firstTime) {
-                FileOperations.write(s, "products.txt", false);
-                firstTime = false;
-                continue;
-            }
-            FileOperations.write(s, "products.txt", true);
-        }
+        // TODO add your handling code here:
     }
 
     private void DiscountFieldActionPerformed(java.awt.event.ActionEvent evt) {
@@ -216,8 +202,8 @@ public class MarketingFrame extends javax.swing.JFrame {
     private void LogOutButtonActionPerformed(java.awt.event.ActionEvent evt) {
         this.setVisible(false);
         new LoginFrame().setVisible(true);
+        // TODO add your handling code here:
     }
-
 
     /**
      * @param args the command line arguments
@@ -267,5 +253,6 @@ public class MarketingFrame extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private int ID;
     private javax.swing.JScrollPane jScrollPane2;
+
     // End of variables declaration
 }
