@@ -319,23 +319,6 @@ public class InventoryConsole extends javax.swing.JFrame {
         }
     }
 
-    private float total(){
-        String[] rowData = new String[4];
-        DefaultTableModel productsTableInventoryModel = (DefaultTableModel) productsTableInventory.getModel();
-        total = 0;
-        float quantity, price;
-        for (int i = 0; i < productsTableInventoryModel.getRowCount(); i++) {
-            price = Float.parseFloat(String.valueOf(productsTableInventoryModel.getValueAt(i, 2)));
-            quantity = Float.parseFloat(String.valueOf(productsTableInventoryModel.getValueAt(i, 3)));
-            total += (price * quantity);
-//            for (int j = 0; j < 4; j++) {
-//
-//                rowData[j] = String.valueOf(productsTableInventoryModel.getValueAt(i, j));
-//            }
-            }
-        return total;
-    }
-
     /**
      * @param args the command line arguments
      */
