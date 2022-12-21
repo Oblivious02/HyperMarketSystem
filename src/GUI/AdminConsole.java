@@ -200,8 +200,7 @@ public class AdminConsole extends javax.swing.JFrame {
 
 
     private void SearchEmployeeActionPerformed(java.awt.event.ActionEvent evt) {
-        ArrayList<Employee> employees;
-        employees = (ArrayList<Employee>) (Object) FileOperations.read("employee.txt");
+        ArrayList<Employee> employees = (ArrayList<Employee>) (Object) FileOperations.read("employee.txt");
         EmployeesTableModel = (DefaultTableModel) EmployeesTable.getModel();
         EmployeesTableModel.setRowCount(0);
         for (Employee employee: employees) {
@@ -214,8 +213,7 @@ public class AdminConsole extends javax.swing.JFrame {
 
 
     private void ListButtonActionPerformed(java.awt.event.ActionEvent evt) {
-        ArrayList<Employee> employees = new ArrayList<>();
-        employees = (ArrayList<Employee>) (Object) FileOperations.read("employee.txt");
+        ArrayList<Employee> employees = (ArrayList<Employee>) (Object) FileOperations.read("employee.txt");
         EmployeesTableModel = (DefaultTableModel) EmployeesTable.getModel();
         EmployeesTableModel.setRowCount(0);
         for (Employee employee: employees) {
@@ -226,7 +224,6 @@ public class AdminConsole extends javax.swing.JFrame {
 
     private void AddEmployeeActionPerformed(java.awt.event.ActionEvent evt) {
         EmployeesTableModel = (DefaultTableModel) EmployeesTable.getModel();
-        int[] IDs = new int[EmployeesTableModel.getRowCount()];
         int max = -1;
         for (int i = 0; i < EmployeesTableModel.getRowCount(); i++) {
             if (i == 0) {
@@ -253,8 +250,6 @@ public class AdminConsole extends javax.swing.JFrame {
             }
         });
     }
-
-    // Variables declaration - do not modify
     private javax.swing.JButton AddEmployee;
     private javax.swing.JButton DeleteButton;
     private javax.swing.JTable EmployeesTable;

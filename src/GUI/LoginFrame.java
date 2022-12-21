@@ -256,7 +256,6 @@ public class LoginFrame extends javax.swing.JFrame {
 
 
     private void ClearButtonActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
         UserNameTextField.setText(null);
         PasswordTextField.setText(null);
     }
